@@ -1,5 +1,6 @@
 // import { cleanup } from '@testing-library/react';
 import React, {useState} from 'react'
+// import App from '../App';
 
 
 
@@ -8,16 +9,19 @@ export default function TextForm(props) {
         // console.log('Uppercase was clicked ' + text);
         let newText = text.toUpperCase();
         setText(newText) 
+        props.showAlert("Text converted to uppercase", "success")
     }
     const handleLowClick = () => {
         // console.log('Uppercase was clicked ' + text);
         let newText = text.toLowerCase();
         setText(newText) 
+        props.showAlert("Text converted to lowercase", "success")
     }
     const handleClearClick = () => {
         // console.log('Uppercase was clicked ' + text);
         let newText = "";
         setText(newText) 
+        props.showAlert("Textarea cleared", "success")
     }
 
     const handleOnChange = (event) => {
@@ -35,12 +39,14 @@ export default function TextForm(props) {
         var text = document.getElementById("myBox")
         text.select();
         navigator.clipboard.writeText(text.value);
+        props.showAlert("Text copied to clipboard", "success")
         
     }
 
     const handleExtraSpaces = () => {
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "))
+        props.showAlert("Extra space removed", "success")
     }
 
     const [text, setText] = useState('');
